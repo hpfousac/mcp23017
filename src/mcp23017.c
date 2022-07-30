@@ -5,10 +5,10 @@
 
 #define I2C_TIMEOUT		10
 
-void mcp23017_init(MCP23017_HandleTypeDef *hdev, I2C_HandleTypeDef *hi2c, uint16_t addr)
+HAL_StatusTypeDef mcp23017_init(MCP23017_HandleTypeDef *hdev, I2C_HandleTypeDef *hi2c, uint16_t addr)
 {
-	hdev->hi2c = hi2c;
-	hdev->addr = addr << 1; // tested using logan
+//  https://github.com/ProjectsByJRP/stm32_hal_i2c_bus_scan/blob/master/Src/main.c
+	return HAL_I2C_IsDeviceReady(hdev->hi2c = hi2c, (uint16_t) (hdev->addr = addr << 1), 2, 2);
 }
 
 HAL_StatusTypeDef mcp23017_read(MCP23017_HandleTypeDef *hdev, uint16_t reg, uint8_t *data)
