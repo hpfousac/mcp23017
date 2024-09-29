@@ -111,6 +111,6 @@ extern HAL_StatusTypeDef mcp23017_ggpu (MCP23017_HandleTypeDef *hdev, uint8_t po
 extern HAL_StatusTypeDef mcp23017_read_gpio (MCP23017_HandleTypeDef *hdev, uint8_t port); // port index [0,1] or MCP23017_PORTA/MCP23017_PORTB
 extern HAL_StatusTypeDef mcp23017_write_gpio (MCP23017_HandleTypeDef *hdev, uint8_t port);
 
-#ifdef USE_PCA9685_DMA
+#ifdef USE_MCP23017_DMA
 extern HAL_StatusTypeDef mcp23017_write_gpio_dma (MCP23017_HandleTypeDef *hdev);
-#endif // USE_PCA9685_DMA		
+#endif // USE_MCP23017_DMA		
