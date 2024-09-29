@@ -90,3 +90,11 @@ HAL_StatusTypeDef mcp23017_write_gpio(MCP23017_HandleTypeDef *hdev, uint8_t port
 uint8_t data[1] = {hdev->gpio[port]};
 	return mcp23017_write(hdev, MCP23017_REGISTER_GPIOA|port, data);
 }
+
+#ifdef USE_PCA9685_DMA
+HAL_StatusTypeDef mcp23017_write_gpio_dma (MCP23017_HandleTypeDef *hdev)
+{
+// HAL_I2C_Mem_Write(hdev->hi2c, hdev->addr, reg, 1, data, 1, I2C_TIMEOUT);
+	return HAL_I2C_Mem_Write_DMA (hdev->hi2c, hdev->addr, MCP23017_REGISTER_GPIOA, 1, hdev->gpio, 2);
+}
+#endif // USE_PCA9685_DMA		
